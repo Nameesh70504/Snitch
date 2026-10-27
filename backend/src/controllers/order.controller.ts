@@ -16,7 +16,9 @@ interface PopulatedProduct {
 }
 
 export const createOrder = async (req: CustomRequest, res: Response) => {
+
     try {
+        
         const user = req.user;
 
         if (!user) {

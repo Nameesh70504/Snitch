@@ -13,7 +13,9 @@ export interface CustomRequest extends Request {
 }
 
 export async function authenticate(req: CustomRequest, res: Response, next: NextFunction) {
+    
     const authHeader = req.headers.authorization;
+
     const token = authHeader?.startsWith("Bearer ") ? authHeader.split(" ")[1] : req.cookies?.accessToken;
 
     if (!token) {

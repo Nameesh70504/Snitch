@@ -3,8 +3,11 @@ import productModel from "../models/product.model.js";
 import cartModel from "../models/cart.model.js";
 import type { CustomRequest } from "../middleware/auth.middleware.js";
 
+
 export const addProductToCart = async (req: CustomRequest, res: Response) => {
+
     try {
+
         const user = req.user;
 
         if (!user) {
@@ -12,6 +15,7 @@ export const addProductToCart = async (req: CustomRequest, res: Response) => {
         }
 
         const { productId } = req.params;
+
         const { size: productSize, quantity } = req.body;
 
         if (!productId) {
@@ -84,6 +88,7 @@ export const addProductToCart = async (req: CustomRequest, res: Response) => {
         return res.status(200).json({
             message: "Product added to cart successfully",
         });
+        
     } catch (error) {
         console.error("Add to cart error:", error);
         return res.status(500).json({ message: "Internal server error" });
